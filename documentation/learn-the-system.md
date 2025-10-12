@@ -192,6 +192,11 @@ A fundamental principle: **divide your application into distinct sections, each 
 
 ### 3.2 Java Basics
 
+**Important**: NISIRCOP uses **Java 17 LTS** across all backend services. This is configured and locked in:
+- `build.gradle`: `JavaLanguageVersion.of(17)`
+- Docker build: `gradle:8.5-jdk17-alpine`
+- Docker runtime: `eclipse-temurin:17-jre-alpine`
+
 **Hello World Example**:
 ```java
 public class HelloWorld {
@@ -478,6 +483,17 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 **No Implementation Needed**: Spring Data JPA generates the implementation at runtime!
 
+**For Services with Geospatial Data** (Incident Service, Geographic Service):
+```properties
+# Use PostGIS dialect for spatial queries
+spring.jpa.properties.hibernate.dialect=org.hibernate.spatial.dialect.postgis.PostgisPG95Dialect
+```
+
+**Dependencies Required**:
+```gradle
+implementation 'org.hibernate.orm:hibernate-spatial:6.6.3.Final'
+```
+
 ---
 
 ## Chapter 5: Spring Cloud & Microservices
@@ -491,6 +507,8 @@ When you split an application into multiple services, new challenges emerge:
 - **Load Balancing**: How to distribute requests?
 
 **Spring Cloud** provides solutions to these challenges.
+
+**Important**: NISIRCOP uses **Spring Cloud 2024.0.0** and **Spring Boot 3.5.6**, configured for compatibility.
 
 ### 5.2 Eureka: Service Discovery
 
@@ -538,8 +556,25 @@ public class UserServiceApplication {
 **Configuration** (`application.properties`):
 ```properties
 spring.application.name=user-service
+server.port=8082
+
+# Database Configuration
+spring.datasource.url=jdbc:postgresql://localhost:5432/nisircop
+spring.datasource.username=postgres
+spring.datasource.password=${POSTGRES_PASSWORD}
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+# JPA Configuration (PRODUCTION SAFE)
+spring.jpa.hibernate.ddl-auto=validate  # Only validate, never modify schema
+spring.jpa.show-sql=false
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+
+# Eureka Configuration
 eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka
 ```
+
+**Security Note**: Using `ddl-auto=validate` prevents accidental database schema modifications in production.
 
 ### 5.3 API Gateway
 
@@ -564,22 +599,47 @@ eureka.client.service-url.defaultZone=http://eureka-server:8761/eureka
 └────┘ └────┘ └─────────┘ └──────────┘
 ```
 
-**API Gateway Configuration**:
+**API Gateway Configuration** (`application.properties`):
+```properties
+spring.application.name=api-gateway
+server.port=8080
+
+eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
+
+# Route configurations
+spring.cloud.gateway.routes[0].id=user-service
+spring.cloud.gateway.routes[0].uri=lb://user-service
+spring.cloud.gateway.routes[0].predicates[0]=Path=/api/v1/users/**
+
+spring.cloud.gateway.routes[1].id=incident-service
+spring.cloud.gateway.routes[1].uri=lb://incident-service
+spring.cloud.gateway.routes[1].predicates[0]=Path=/api/v1/incidents/**
+
+spring.cloud.gateway.routes[2].id=geographic-service
+spring.cloud.gateway.routes[2].uri=lb://geographic-service
+spring.cloud.gateway.routes[2].predicates[0]=Path=/api/v1/geo/**
+
+spring.cloud.gateway.routes[3].id=analytics-service
+spring.cloud.gateway.routes[3].uri=lb://analytics-service
+spring.cloud.gateway.routes[3].predicates[0]=Path=/api/v1/analytics/**
+
+spring.cloud.gateway.routes[4].id=auth-service
+spring.cloud.gateway.routes[4].uri=lb://auth-service
+spring.cloud.gateway.routes[4].predicates[0]=Path=/auth/**
+```
+
+**Application Class**:
 ```java
 @SpringBootApplication
+@EnableDiscoveryClient  // Required for service discovery
 public class ApiGatewayApplication {
-    
-    @Bean
-    public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
-        return builder.routes()
-            .route("user-service", r -> r.path("/api/v1/users/**")
-                .uri("lb://USER-SERVICE"))  // Load balanced
-            .route("incident-service", r -> r.path("/api/v1/incidents/**")
-                .uri("lb://INCIDENT-SERVICE"))
-            .build();
+    public static void main(String[] args) {
+        SpringApplication.run(ApiGatewayApplication.class, args);
     }
 }
 ```
+
+**Important**: Use `spring-cloud-starter-gateway` dependency (NOT `gateway-server-webmvc`).
 
 **Benefits**:
 - Simplified client code

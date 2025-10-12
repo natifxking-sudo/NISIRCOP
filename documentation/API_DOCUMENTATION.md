@@ -2,9 +2,48 @@
 
 This document provides detailed documentation for the NISIRCOP-LE-ANALYTICS API. All endpoints are secured and require a valid JWT token unless otherwise specified.
 
+## System Architecture
+
+The NISIRCOP system is built on a **microservices architecture** with the following components:
+- **Eureka Server** (Port 8761): Service registry and discovery
+- **API Gateway** (Port 8080): Single entry point for all client requests
+- **Auth Service** (Port 8081): JWT-based authentication
+- **User Service** (Port 8082): User management
+- **Incident Service** (Port 8083): Crime incident management
+- **Geographic Service** (Port 8084): Geospatial operations with PostGIS
+- **Analytics Service** (Port 8085): Crime analytics and reporting
+
 ## Authentication
 
-Authentication is handled by the `auth-service`. To obtain a token, send a POST request to `/auth/login` with user credentials.
+Authentication is handled by the `auth-service` using JWT tokens with 24-hour expiration.
+
+### Login
+**Endpoint**: `POST /auth/login`
+**Request Body**:
+```json
+{
+  "username": "officer_jane",
+  "password": "password"
+}
+```
+
+**Response**:
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "user": {
+    "id": 1,
+    "username": "officer_jane",
+    "role": "OFFICER"
+  }
+}
+```
+
+### Using the Token
+Include the JWT token in the Authorization header for all subsequent requests:
+```
+Authorization: Bearer <your_jwt_token>
+```
 
 ## Services
 
