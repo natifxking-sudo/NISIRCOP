@@ -144,14 +144,22 @@ This document outlines all the critical fixes, improvements, and security enhanc
 ## Compatibility Matrix
 | Component | Version | Status |
 |-----------|---------|--------|
-| Spring Boot | 3.3.6 | ✅ Verified |
+| Spring Boot | 3.5.6 | ✅ Verified |
 | Spring Cloud | 2024.0.0 | ✅ Fixed |
-| Java | 17 | ✅ Correct |
+| **Java** | **17 LTS** | ✅ **Configured & Locked** |
+| Gradle | 8.5 | ✅ Correct |
 | Hibernate Spatial | 6.6.3.Final | ✅ Fixed |
 | PostgreSQL | 15 + PostGIS | ✅ Correct |
 | Vue.js | 3.5.22 | ✅ Latest |
 | PostCSS | 8.4.49 | ✅ Fixed |
 | Node.js | 20 | ✅ Modern |
+
+### Java 17 Configuration
+All backend services are configured to use Java 17 LTS:
+- ✅ `build.gradle`: `JavaLanguageVersion.of(17)` in all services
+- ✅ `Dockerfile` build stage: `gradle:8.5-jdk17-alpine`
+- ✅ `Dockerfile` runtime: `eclipse-temurin:17-jre-alpine`
+- ✅ Consistent across all 7 backend services
 
 ## Summary
 **Total Issues Found**: 10 critical/major issues
