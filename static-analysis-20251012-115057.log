@@ -1,0 +1,173 @@
+Starting analysis at Sun Oct 12 11:50:57 AM UTC 2025
+[PASS] Directory exists: backend - 
+[PASS] Directory exists: frontend - 
+[PASS] Directory exists: database - 
+[PASS] Directory exists: documentation - 
+[PASS] Backend service: user-service - Directory exists
+[PASS] Backend service: auth-service - Directory exists
+[PASS] Backend service: incident-service - Directory exists
+[PASS] Backend service: geographic-service - Directory exists
+[PASS] Backend service: analytics-service - Directory exists
+[PASS] Backend service: api-gateway - Directory exists
+[PASS] Backend service: eureka-server - Directory exists
+[PASS] Frontend app: shell - Directory exists
+[PASS] Frontend app: users - Directory exists
+[PASS] Frontend app: incidents - Directory exists
+[PASS] Frontend app: analytics - Directory exists
+[PASS] docker-compose.yml exists - 
+[PASS] Docker Compose services defined - 10 services
+[PASS] .env file exists - 
+[PASS] .env has POSTGRES_PASSWORD - 
+[PASS] .env has JWT_SECRET - 
+[PASS] database/init.sql exists - 
+[PASS] init.sql defines users table - 
+[PASS] init.sql defines incidents table - 
+[PASS] init.sql defines boundaries table - 
+[PASS] init.sql enables PostGIS - 
+[PASS] user-service: build.gradle exists - 
+[PASS] user-service: Has Spring Boot Web dependency - 
+[PASS] user-service: Has Eureka client dependency - 
+[PASS] user-service: Dockerfile exists - 
+[PASS] user-service: application.properties exists - 
+[PASS] user-service: Application name configured - 
+[PASS] user-service: Server port configured - 
+[PASS] user-service: Eureka client configured - 
+[PASS] user-service: Main application class exists - UserServiceApplication.java
+[PASS] user-service: Has @SpringBootApplication annotation - 
+[PASS] user-service: Test class exists - UserServiceApplicationTests.java
+[PASS] auth-service: build.gradle exists - 
+[PASS] auth-service: Has Spring Boot Web dependency - 
+[PASS] auth-service: Has Eureka client dependency - 
+[PASS] auth-service: Dockerfile exists - 
+[PASS] auth-service: application.properties exists - 
+[PASS] auth-service: Application name configured - 
+[PASS] auth-service: Server port configured - 
+[PASS] auth-service: Eureka client configured - 
+[PASS] auth-service: Main application class exists - AuthServiceApplication.java
+[PASS] auth-service: Has @SpringBootApplication annotation - 
+[PASS] auth-service: Test class exists - AuthServiceApplicationTests.java
+[PASS] incident-service: build.gradle exists - 
+[PASS] incident-service: Has Spring Boot Web dependency - 
+[PASS] incident-service: Has Eureka client dependency - 
+[PASS] incident-service: Dockerfile exists - 
+[PASS] incident-service: application.properties exists - 
+[PASS] incident-service: Application name configured - 
+[PASS] incident-service: Server port configured - 
+[PASS] incident-service: Eureka client configured - 
+[PASS] incident-service: Main application class exists - IncidentServiceApplication.java
+[PASS] incident-service: Has @SpringBootApplication annotation - 
+[PASS] incident-service: Test class exists - IncidentServiceApplicationTests.java
+[PASS] geographic-service: build.gradle exists - 
+[PASS] geographic-service: Has Spring Boot Web dependency - 
+[PASS] geographic-service: Has Eureka client dependency - 
+[PASS] geographic-service: Dockerfile exists - 
+[PASS] geographic-service: application.properties exists - 
+[PASS] geographic-service: Application name configured - 
+[PASS] geographic-service: Server port configured - 
+[PASS] geographic-service: Eureka client configured - 
+[PASS] geographic-service: Main application class exists - GeographicServiceApplication.java
+[PASS] geographic-service: Has @SpringBootApplication annotation - 
+[PASS] geographic-service: Test class exists - GeographicServiceApplicationTests.java
+[PASS] analytics-service: build.gradle exists - 
+[PASS] analytics-service: Has Spring Boot Web dependency - 
+[PASS] analytics-service: Has Eureka client dependency - 
+[PASS] analytics-service: Dockerfile exists - 
+[PASS] analytics-service: application.properties exists - 
+[PASS] analytics-service: Application name configured - 
+[PASS] analytics-service: Server port configured - 
+[PASS] analytics-service: Eureka client configured - 
+[PASS] analytics-service: Main application class exists - AnalyticsServiceApplication.java
+[PASS] analytics-service: Has @SpringBootApplication annotation - 
+[PASS] analytics-service: Test class exists - AnalyticsServiceApplicationTests.java
+[PASS] api-gateway: build.gradle exists - 
+[PASS] api-gateway: Has Eureka client dependency - 
+[PASS] api-gateway: Dockerfile exists - 
+[PASS] api-gateway: application.properties exists - 
+[PASS] api-gateway: Application name configured - 
+[PASS] api-gateway: Server port configured - 
+[PASS] api-gateway: Eureka client configured - 
+[PASS] api-gateway: Main application class exists - ApiGatewayApplication.java
+[PASS] api-gateway: Has @SpringBootApplication annotation - 
+[PASS] api-gateway: Test class exists - ApiGatewayApplicationTests.java
+[PASS] eureka-server: build.gradle exists - 
+[PASS] eureka-server: Has Eureka client dependency - 
+[PASS] eureka-server: Dockerfile exists - 
+[PASS] eureka-server: application.properties exists - 
+[PASS] eureka-server: Application name configured - 
+[PASS] eureka-server: Server port configured - 
+[PASS] eureka-server: Eureka client configured - 
+[PASS] eureka-server: Main application class exists - EurekaServerApplication.java
+[PASS] eureka-server: Has @SpringBootApplication annotation - 
+[PASS] eureka-server: Test class exists - EurekaServerApplicationTests.java
+[PASS] shell: package.json exists - 
+[PASS] shell: Has Vue.js dependency - 
+[PASS] shell: Has Vite build tool - 
+[PASS] shell: Has Tailwind CSS - 
+[PASS] shell: Has Pinia state management - 
+[PASS] shell: Dockerfile exists - 
+[PASS] shell: index.html exists - 
+[PASS] shell: vite.config.js exists - 
+[PASS] shell: tailwind.config.js exists - 
+[PASS] shell: src directory exists - 
+[PASS] shell: App.vue exists - 
+[PASS] shell: main.js exists - 
+[PASS] users: package.json exists - 
+[PASS] users: Has Vue.js dependency - 
+[PASS] users: Has Vite build tool - 
+[PASS] users: Has Tailwind CSS - 
+[PASS] users: Has Pinia state management - 
+[PASS] users: Dockerfile exists - 
+[PASS] users: index.html exists - 
+[PASS] users: vite.config.js exists - 
+[PASS] users: tailwind.config.js exists - 
+[PASS] users: src directory exists - 
+[PASS] users: App.vue exists - 
+[PASS] users: main.js exists - 
+[PASS] incidents: package.json exists - 
+[PASS] incidents: Has Vue.js dependency - 
+[PASS] incidents: Has Vite build tool - 
+[PASS] incidents: Has Tailwind CSS - 
+[PASS] incidents: Has Pinia state management - 
+[PASS] incidents: Dockerfile exists - 
+[PASS] incidents: index.html exists - 
+[PASS] incidents: vite.config.js exists - 
+[PASS] incidents: tailwind.config.js exists - 
+[PASS] incidents: src directory exists - 
+[PASS] incidents: App.vue exists - 
+[PASS] incidents: main.js exists - 
+[PASS] analytics: package.json exists - 
+[PASS] analytics: Has Vue.js dependency - 
+[PASS] analytics: Has Vite build tool - 
+[PASS] analytics: Has Tailwind CSS - 
+[PASS] analytics: Has Pinia state management - 
+[PASS] analytics: Dockerfile exists - 
+[PASS] analytics: index.html exists - 
+[PASS] analytics: vite.config.js exists - 
+[PASS] analytics: tailwind.config.js exists - 
+[PASS] analytics: src directory exists - 
+[PASS] analytics: App.vue exists - 
+[PASS] analytics: main.js exists - 
+[PASS] Documentation: API_DOCUMENTATION.md exists - 
+[PASS] Documentation: API_DOCUMENTATION.md has content - 1313 bytes
+[PASS] Documentation: DEPLOYMENT_GUIDE.md exists - 
+[PASS] Documentation: DEPLOYMENT_GUIDE.md has content - 1524 bytes
+[PASS] Documentation: USER_MANUAL.md exists - 
+[PASS] Documentation: USER_MANUAL.md has content - 1649 bytes
+[PASS] Documentation: learn-the-system.md exists - 
+[PASS] Documentation: learn-the-system.md has content - 78340 bytes
+[PASS] Java source files - Found 14 files
+[PASS] Vue component files - Found 8 files
+[PASS] JavaScript files - Found 17 files
+[PASS] No hardcoded passwords in code - 
+[PASS] Using environment variables for DB password - 
+[FAIL] API Documentation: POST /auth/login documented - Endpoint not documented
+[PASS] API Documentation: GET /api/v1/users documented - 
+[PASS] API Documentation: POST /api/v1/incidents documented - 
+[PASS] API Documentation: GET /api/v1/analytics/trends documented - 
+[PASS] Database indexes defined - 2 indexes
+[PASS] Foreign key constraints defined - 1 constraints
+[PASS] Sample data provided - 3 INSERT statements
+[PASS] Spatial data types used - PostGIS geometry types found
+[PASS] Gradle wrapper exists - 
+[PASS] Dockerfiles exist - Found 11 Dockerfiles
+[PASS] Multi-stage Docker builds - 11 multi-stage builds
