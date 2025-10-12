@@ -1,0 +1,117 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgis/postgis:15-3.3
+    container_name: nisircop_db
+    environment:
+      POSTGRES_DB: nisircop
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - nisircop-data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d nisircop"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  eureka-server:
+    build: ./backend/eureka-server
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8761"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  api-gateway:
+    build: ./backend/api-gateway
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka
+
+  auth-service:
+    build: ./backend/auth-service
+    container_name: auth-service
+    depends_on:
+      db:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - JWT_SECRET=${JWT_SECRET}
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/nisircop
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka
+
+  user-service:
+    build: ./backend/user-service
+    container_name: user-service
+    depends_on:
+      db:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/nisircop
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka
+
+  incident-service:
+    build: ./backend/incident-service
+    container_name: incident-service
+    depends_on:
+      db:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/nisircop
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka
+
+  geographic-service:
+    build: ./backend/geographic-service
+    container_name: geographic-service
+    depends_on:
+      db:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/nisircop
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka
+
+  analytics-service:
+    build: ./backend/analytics-service
+    container_name: analytics-service
+    depends_on:
+      db:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/nisircop
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka
+
+  frontend:
+    build: ./frontend/shell
+    container_name: frontend-shell
+    ports:
+      - "3000:80"
+
+volumes:
+  nisircop-data:
