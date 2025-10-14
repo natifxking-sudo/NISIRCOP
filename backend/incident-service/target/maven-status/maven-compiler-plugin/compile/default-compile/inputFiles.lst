@@ -1,0 +1,9 @@
+/workspace/backend/incident-service/src/main/java/com/example/incident_service/IncidentServiceApplication.java
+/workspace/backend/incident-service/src/main/java/com/example/incident_service/controller/IncidentController.java
+/workspace/backend/incident-service/src/main/java/com/example/incident_service/dto/CreateIncidentRequest.java
+/workspace/backend/incident-service/src/main/java/com/example/incident_service/dto/IncidentDTO.java
+/workspace/backend/incident-service/src/main/java/com/example/incident_service/dto/LocationDTO.java
+/workspace/backend/incident-service/src/main/java/com/example/incident_service/entity/Incident.java
+/workspace/backend/incident-service/src/main/java/com/example/incident_service/entity/IncidentPriority.java
+/workspace/backend/incident-service/src/main/java/com/example/incident_service/repository/IncidentRepository.java
+/workspace/backend/incident-service/src/main/java/com/example/incident_service/service/IncidentService.java

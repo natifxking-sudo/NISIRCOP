@@ -1,0 +1,66 @@
+================================================================================
+NISIRCOP-LE BACKEND - API TESTING GUIDE
+================================================================================
+
+VERIFIED WORKING: USER SERVICE API
+
+BASE URL: http://localhost:8082
+
+ENDPOINTS:
+
+1. GET ALL USERS
+   curl http://localhost:8082/api/v1/users
+   
+   Expected: JSON array of all users
+   Status: 200 OK
+
+2. GET USER BY ID
+   curl http://localhost:8082/api/v1/users/1
+   
+   Expected: Single user object
+   Status: 200 OK
+
+3. GET USERS BY ROLE
+   curl http://localhost:8082/api/v1/users/role/OFFICER
+   
+   Expected: Array of officers only
+   Status: 200 OK
+
+4. CREATE NEW USER
+   curl -X POST http://localhost:8082/api/v1/users \
+     -H "Content-Type: application/json" \
+     -d '{
+       "username": "test_officer_001",
+       "password": "SecurePass123!",
+       "role": "OFFICER",
+       "fullName": "Test Officer 001",
+       "stationId": 1
+     }'
+   
+   Expected: Created user object with ID
+   Status: 201 Created
+
+5. UPDATE USER
+   curl -X PUT http://localhost:8082/api/v1/users/5 \
+     -H "Content-Type: application/json" \
+     -d '{
+       "fullName": "Updated Name"
+     }'
+   
+   Expected: Updated user object
+   Status: 200 OK
+
+6. DELETE USER
+   curl -X DELETE http://localhost:8082/api/v1/users/5
+   
+   Expected: No content
+   Status: 204 No Content
+
+SWAGGER UI:
+Open http://localhost:8082/swagger-ui.html for interactive testing
+
+DATABASE VERIFICATION:
+psql -h localhost -U postgres -d nisircop
+SELECT * FROM users;
+
+================================================================================

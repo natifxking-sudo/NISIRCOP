@@ -107,11 +107,5 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/nisircop
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka
 
-  frontend:
-    build: ./frontend/shell
-    container_name: frontend-shell
-    ports:
-      - "3000:80"
-
 volumes:
   nisircop-data:

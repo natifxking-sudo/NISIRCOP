@@ -1,0 +1,15 @@
+/workspace/backend/user-service/src/main/java/com/example/user_service/UserServiceApplication.java
+/workspace/backend/user-service/src/main/java/com/example/user_service/config/SecurityConfig.java
+/workspace/backend/user-service/src/main/java/com/example/user_service/controller/UserController.java
+/workspace/backend/user-service/src/main/java/com/example/user_service/dto/CreateUserRequest.java
+/workspace/backend/user-service/src/main/java/com/example/user_service/dto/UpdateUserRequest.java
+/workspace/backend/user-service/src/main/java/com/example/user_service/dto/UserDTO.java
+/workspace/backend/user-service/src/main/java/com/example/user_service/entity/User.java
+/workspace/backend/user-service/src/main/java/com/example/user_service/entity/UserRole.java
+/workspace/backend/user-service/src/main/java/com/example/user_service/exception/GlobalExceptionHandler.java
+/workspace/backend/user-service/src/main/java/com/example/user_service/exception/UserAlreadyExistsException.java
+/workspace/backend/user-service/src/main/java/com/example/user_service/exception/UserNotFoundException.java
+/workspace/backend/user-service/src/main/java/com/example/user_service/repository/UserRepository.java
+/workspace/backend/user-service/src/main/java/com/example/user_service/repository/UserRepositoryCustom.java
+/workspace/backend/user-service/src/main/java/com/example/user_service/repository/UserRepositoryImpl.java
+/workspace/backend/user-service/src/main/java/com/example/user_service/service/UserService.java
