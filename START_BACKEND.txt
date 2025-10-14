@@ -1,0 +1,58 @@
+================================================================================
+NISIRCOP-LE BACKEND - STARTUP INSTRUCTIONS
+================================================================================
+
+PREREQUISITES:
+✓ Java 21 installed
+✓ Maven 3.9 installed
+✓ PostgreSQL 17 with PostGIS running
+✓ Database 'nisircop' initialized with schema
+
+STEP-BY-STEP STARTUP:
+
+1. SET ENVIRONMENT VARIABLES:
+   export POSTGRES_PASSWORD=nisircop_secure_password_2024
+   export JWT_SECRET=$(cat .env | grep JWT_SECRET | cut -d'=' -f2)
+
+2. START EUREKA SERVER (Terminal 1):
+   cd backend/eureka-server
+   mvn spring-boot:run
+   
+   Wait until you see: "Started EurekaServerApplication"
+   Verify at: http://localhost:8761
+
+3. START API GATEWAY (Terminal 2):
+   cd backend/api-gateway
+   mvn spring-boot:run
+   
+   Wait 25 seconds after Eureka starts
+
+4. START USER SERVICE (Terminal 3):
+   cd backend/user-service
+   mvn spring-boot:run
+   
+   Wait until you see: "Started UserServiceApplication"
+
+5. TEST THE API:
+   curl http://localhost:8082/api/v1/users
+   
+   Or open Swagger UI:
+   http://localhost:8082/swagger-ui.html
+
+VERIFICATION:
+✓ Eureka Dashboard: http://localhost:8761
+✓ User Service should appear as "USER-SERVICE" with status "UP"
+✓ API should return JSON array of users
+
+TROUBLESHOOTING:
+- If port in use: pkill -f "service-name"
+- If database error: sudo service postgresql start
+- Check logs in terminal for errors
+
+================================================================================
+FOR COMPLETE DOCUMENTATION, SEE:
+- README.md (API reference)
+- DATABASE.md (database operations)
+- LEARN.md (learning course)
+- FINAL_STATUS.md (implementation status)
+================================================================================

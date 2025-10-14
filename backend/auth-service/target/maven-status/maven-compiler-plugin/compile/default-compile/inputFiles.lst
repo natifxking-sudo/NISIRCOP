@@ -1,0 +1,9 @@
+/workspace/backend/auth-service/src/main/java/com/example/auth_service/AuthServiceApplication.java
+/workspace/backend/auth-service/src/main/java/com/example/auth_service/config/SecurityConfig.java
+/workspace/backend/auth-service/src/main/java/com/example/auth_service/controller/AuthController.java
+/workspace/backend/auth-service/src/main/java/com/example/auth_service/dto/LoginRequest.java
+/workspace/backend/auth-service/src/main/java/com/example/auth_service/dto/LoginResponse.java
+/workspace/backend/auth-service/src/main/java/com/example/auth_service/entity/User.java
+/workspace/backend/auth-service/src/main/java/com/example/auth_service/repository/UserRepository.java
+/workspace/backend/auth-service/src/main/java/com/example/auth_service/security/JwtUtil.java
+/workspace/backend/auth-service/src/main/java/com/example/auth_service/service/AuthService.java
